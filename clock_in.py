@@ -121,10 +121,10 @@ for i in range(10):
     try:    
         a = main()
         if a == 0:
-            send_mail('成功')
+            # send_mail('成功')
             break
         elif i == 9 and a == 1:
-            send_mail('失败')
+            # send_mail('失败')
             raise ValueError("打卡失败")
         else:
             continue
