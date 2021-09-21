@@ -2,8 +2,6 @@ import requests
 import json
 import argparse
 import re
-import smtplib
-from email.mime.text import MIMEText
 
 # 初始化变量
 parser = argparse.ArgumentParser()
@@ -13,10 +11,6 @@ parser.add_argument('--province', type=str, default=None)
 parser.add_argument('--city', type=str, default=None)
 parser.add_argument('--county', type=str, default=None)
 parser.add_argument('--address', type=str, default=None)
-parser.add_argument('--mhost', type=str, default=None)
-parser.add_argument('--muser', type=str, default=None)
-parser.add_argument('--mpass', type=str, default=None)
-parser.add_argument('--mrecv', type=str, default=None)
 args = parser.parse_args()
 
 def captchaOCR():
@@ -92,41 +86,14 @@ def main():
     else:
         isSucccess = 1
     print(clockin.status_code, json.loads(clockin.text)['msg'])
-
     return isSucccess
 
-def send_mail(info):
-    mail_host = args.mhost
-    mail_user = args.muser 
-    mail_pass = args.mpass   
-    sender = args.muser
-    receivers = [args.mrecv]  
-
-    message = MIMEText('', 'plain', 'utf-8')    
-    message['Subject'] = '打卡' + info
-    message['From'] = sender 
-    message['To'] = receivers[0]  
-    
-    try:
-        smtpObj = smtplib.SMTP() 
-        smtpObj.connect(mail_host, 25)
-        smtpObj.login(mail_user, mail_pass) 
-        smtpObj.sendmail(sender, receivers, message.as_string()) 
-        smtpObj.quit() 
-        print('邮件发送成功')
-    except smtplib.SMTPException as e:
-        print('error', e)
-
-for i in range(10):
+while True:
     try:    
         a = main()
         if a == 0:
-            send_mail('成功')
-            break
-        elif i == 9 and a == 1:
-            send_mail('失败')
-            raise ValueError("打卡失败")
+            return
         else:
-            continue
+            time.sleep(60)
     except:
-        continue
+        time.sleep(60)
