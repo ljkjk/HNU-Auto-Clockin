@@ -64,7 +64,7 @@ def main():
                     "IsInsulated": 0,
                     "IsSuspected": 0,
                     "IsDiagnosis": 0,
-                    "Content": null,
+                    "Content": None,
                     "IsViaHuBei": 0,
                     "IsViaWuHan": 0,
                     "IsInCampus": 1,
@@ -72,8 +72,8 @@ def main():
                     "TouchInfo": "",
                     "IsNormalTemperature": 1,
                     "BackState": 0.0,
-                    "MorningTemp": null,
-                    "NightTemp": null,
+                    "MorningTemp": None,
+                    "NightTemp": None,
                     "QRCodeColor": "绿色",
                     "tripinfolist": [],
                     "toucherinfolist": [],
@@ -126,7 +126,7 @@ for i in range(10):
             break
         elif i == 9 and a == 1:
             send_mail('失败')
-            raise valueerror("打卡失败")
+            raise ValueError("打卡失败")
         else:
             continue
     except:
