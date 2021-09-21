@@ -30,7 +30,7 @@ def captchaOCR():
                 'detect_direction': 'false'
                 }
         captcha = requests.post('https://cloud.baidu.com/aidemo', data=data).json()['data']['words_result'][0]['words']
-    print(token, captcha)
+    # print(token, captcha)
     return token, captcha
             
     while len(captcha) != 4:
@@ -89,7 +89,6 @@ def main():
             isSucccess = 0
         else:
             isSucccess = 1
-            print(json.loads(clockin.text)['msg'])
     else:
         isSucccess = 1
     print('msg:', json.loads(clockin.text)['msg'])
