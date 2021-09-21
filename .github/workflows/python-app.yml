@@ -35,9 +35,5 @@ jobs:
           city:       ${{ secrets.CITY }}
           county:     ${{ secrets.COUNTY }}
           address:    ${{ secrets.ADDRESS }}
-          mhost:      ${{ secrets.ADDRESS }}
-          muser:      ${{ secrets.ADDRESS }}
-          mpass:      ${{ secrets.ADDRESS }}
-          mrecv:      ${{ secrets.ADDRESS }}
       run: |
-        python clock_in.py --username=$username --password=$password --province=$province --city=$city --county=$county --address=$address --mhost=$mhost --muser=$muser --mpass=$mpass --mrecv=$mrecv
+        python clock_in.py --username=$username --password=$password --province=$province --city=$city --county=$county --address=$address
