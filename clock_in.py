@@ -91,7 +91,7 @@ def main():
             isSucccess = 1
     else:
         isSucccess = 1
-    print('msg:', json.loads(clockin.text)['msg'])
+    print(clockin.status_code, json.loads(clockin.text)['msg'])
 
     return isSucccess
 
