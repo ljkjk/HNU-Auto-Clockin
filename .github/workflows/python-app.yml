@@ -34,5 +34,6 @@ jobs:
           province:   ${{ secrets.PROVINCE }}
           city:       ${{ secrets.CITY }}
           county:     ${{ secrets.COUNTY }}
+          address:    ${{ secrets.ADDRESS }}
       run: |
         python clock_in.py --username=$username --password=$password --province=$province --city=$city --county=$county
