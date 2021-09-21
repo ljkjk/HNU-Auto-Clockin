@@ -101,7 +101,7 @@ def send_mail(info):
     mail_user = args.muser 
     mail_pass = args.mpass   
     sender = args.muser
-    receivers = [args.muser]  
+    receivers = [args.mrecv]  
 
     message = MIMEText('', 'plain', 'utf-8')    
     message['Subject'] = '打卡' + info
