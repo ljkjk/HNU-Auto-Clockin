@@ -10,6 +10,7 @@ parser.add_argument('--password', type=str, default=None)
 parser.add_argument('--province', type=str, default=None)
 parser.add_argument('--city', type=str, default=None)
 parser.add_argument('--county', type=str, default=None)
+parser.add_argument('--address', type=str, default=None)
 args = parser.parse_args()
 
 def captchaOCR():
@@ -43,20 +44,14 @@ def login():
     headers = {'Cookie': f'.ASPXAUTH={ASPXAUTH}; TOKEN={token}'}
     return headers
 
-def setLocation():
-    location = json.loads(requests.get(f'http://api.tianditu.gov.cn/geocoder?ds={{"keyWord":\"{args.province+args.city+args.county}\"}}&tk=2355cd686a32d016021bffbc4a69d880').text)["location"]
-    real_address = "。" # 在此填写详细地址
-    return location["lon"], location["lat"], real_address
-
 def main():
     clockin_url = 'https://fangkong.hnu.edu.cn/api/v1/clockinlog/add'
     headers = login()
-    lon, lat, real_address = setLocation()
     clockin_data = {"Temperature":"null",
                     "RealProvince":args.province,
                     "RealCity":args.city,
                     "RealCounty":args.county,
-                    "RealAddress":real_address,
+                    "RealAddress":args.address,
                     "IsUnusual":"0",
                     "UnusualInfo":"",
                     "IsTouch":"0",
@@ -72,8 +67,8 @@ def main():
                     "InsulatedAddress":"",
                     "TouchInfo":"",
                     "IsNormalTemperature":"1",
-                    "Longitude":lon,
-                    "Latitude":lat
+                    "Longitude":None,
+                    "Latitude":None
                     }
 
     clockin = requests.post(clockin_url, headers=headers, json=clockin_data)
