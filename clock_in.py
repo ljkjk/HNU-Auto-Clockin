@@ -92,7 +92,7 @@ while True:
     try:    
         a = main()
         if a == 0:
-            return
+            break
         else:
             time.sleep(60)
     except:
