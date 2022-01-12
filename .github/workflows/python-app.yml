@@ -35,5 +35,10 @@ jobs:
           city:       ${{ secrets.CITY }}
           county:     ${{ secrets.COUNTY }}
           address:    ${{ secrets.ADDRESS }}
+          inprovince: ${{ secrets.INPROVINCE }}
+          incity:     ${{ secrets.INCITY }}
+          incounty:   ${{ secrets.INCOUNTY }}
+          inaddress:  ${{ secrets.INADDRESS }}
+          isin:       ${{ secrets.ISIN }}
       run: |
-        python clock_in.py --username=$username --password=$password --province=$province --city=$city --county=$county --address=$address
+        python clock_in.py --username=$username --password=$password --province=$province --city=$city --county=$county --address=$address --inprovince=$inprovince --incity=$incity --incounty=$incounty --inaddress=$inaddress --isin=$isin
