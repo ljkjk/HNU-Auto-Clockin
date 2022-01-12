@@ -12,6 +12,11 @@ parser.add_argument('--province', type=str, default=None)
 parser.add_argument('--city', type=str, default=None)
 parser.add_argument('--county', type=str, default=None)
 parser.add_argument('--address', type=str, default=None)
+parser.add_argument('--inprovince', type=str, default=None)
+parser.add_argument('--incity', type=str, default=None)
+parser.add_argument('--incounty', type=str, default=None)
+parser.add_argument('--inaddress', type=str, default=None)
+parser.add_argument('--isin', type=bool, default=True)
 args = parser.parse_args()
 
 def captchaOCR():
@@ -49,10 +54,10 @@ def main():
     clockin_url = 'https://fangkong.hnu.edu.cn/api/v1/clockinlog/add'
     headers = login()
     clockin_data = {"Temperature":36.50,
-                    "RealProvince":args.province,
-                    "RealCity":args.city,
-                    "RealCounty":args.county,
-                    "RealAddress":args.address,
+                    "RealProvince":args.inprovince if args.isin else args.province,
+                    "RealCity":args.incity if args.isin else args.city,
+                    "RealCounty":args.incounty if args.isin else args.county,
+                    "RealAddress":args.inaddress if args.isin else args.address,
                     "IsUnusual": 0,
                     "UnusualInfo": "",
                     "IsTouch": 0,
@@ -62,7 +67,7 @@ def main():
                     "Content": None,
                     "IsViaHuBei": 0,
                     "IsViaWuHan": 0,
-                    "IsInCampus": 1,
+                    "IsInCampus": 1 if args.isin else 0,
                     "InsulatedAddress": "",
                     "TouchInfo": "",
                     "IsNormalTemperature": 1,
