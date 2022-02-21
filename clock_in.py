@@ -74,7 +74,7 @@ def main():
                     "BackState": 1 if args.isin else 0,
                     "MorningTemp": "36.5",
                     "NightTemp": "36.5",
-                    # "QRCodeColor": "绿色",
+                    "QRCodeColor": "绿色",
                     "tripinfolist": [],
                     "toucherinfolist": [],
                     "dailyinfo":{"IsVia":"0","DateTrip":""},
