@@ -53,7 +53,7 @@ def login():
 def main():
     clockin_url = 'https://fangkong.hnu.edu.cn/api/v1/clockinlog/add'
     headers = login()
-    clockin_data = {"Temperature":36.5,
+    clockin_data = {"Temperature":36.50,
                     "RealProvince":args.inprovince if args.isin else args.province,
                     "RealCity":args.incity if args.isin else args.city,
                     "RealCounty":args.incounty if args.isin else args.county,
